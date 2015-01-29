@@ -4,11 +4,25 @@
 
     (function() {
         function onLoad() {
-            var files = ["dists/css/index.css", "dists/js/index.js"];
+            var files = [
+                "dists/css/index.css",
+                "dists/js/index.js",
+                {id: 'image1', src: "dists/images/image1.jpg"}
+            ];
             var percentage = 0;
             var oldPercentage = 0;
             var loaded = 0;
             var loadFileTotal = files.length;
+            var event; // The custom event that will be created
+            var _event = 'secondOnload'
+            if (document.createEvent) {
+                event = document.createEvent("HTMLEvents");
+                event.initEvent(_event, true, true);
+            } else {
+                event = document.createEventObject();
+                event.eventType = _event;
+            }
+            event.eventName = _event;
             var preload = new createjs.LoadQueue();
             var text = document.querySelector('#loader-text');
             var loader = document.querySelector('#loader');
@@ -22,8 +36,8 @@
                 strokeWidth: 33.3,
                 fill: "rgba(0, 0, 0, 0.2)",
                 text: text,
-                from: { color: '#f00' },
-                to: { color: '#0f0' },
+                from: { color: '#900' },
+                to: { color: '#090' },
                 step: function(state, bar) {
                     bar.path.setAttribute('stroke', state.color);
                     bar.path.setAttribute('fill', state.color);
@@ -31,13 +45,13 @@
             });
             // Expose the bar to global so it is easy to test from console
             window.bar = bar;
-            files.forEach(function (file) {
-                preload.loadFile(file);
-            });
+            // files.forEach(function (file) {
+            //     preload.loadFile(file);
+            // });
+            preload.loadManifest(files);
             var counter;
-            function handleFileComplete(event) {
+            function handleFileComplete(fileEvent) {
                 loaded++;
-                console.log(loaded, event);
                 if (!!counter && !!counter.stop)
                     counter.stop();
                 oldPercentage = percentage;
@@ -48,9 +62,22 @@
                 bar.animate(loaded / loadFileTotal, function () {
                     if (percentage === 100) {
                         loader.style.opacity = 0;
+                        if (document.createEvent) {
+                            document.dispatchEvent(event);
+                        } else {
+                            document.fireEvent("on" + event.eventType, event);
+                        }
+                        console.log('emitted');
                     }
                 });
-                document.body.appendChild(event.result);
+                if (!!fileEvent.item && !!fileEvent.item.id) {
+                    console.log('fileEvent.item.id: "%s"', fileEvent.item.id);
+                    var wrapper = document.getElementById(fileEvent.item.id)
+                    if (!!wrapper)
+                        wrapper.appendChild(fileEvent.result);
+                } else {
+                    document.body.appendChild(fileEvent.result);
+                }
             }
         }
         window.onload = onLoad;

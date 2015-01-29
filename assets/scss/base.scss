@@ -1,1 +1,15 @@
-@import 'dists/fonts/texgyreheros_regular_macroman/stylesheet.css'
+$font-primary: "Helvetica Neue",texgyreherosregular,Helvetica,Arial,sans-serif;
+$font-secondary: 'Playfair Display', Georgia, serif;
+body {
+    font: 150% $font-primary;
+    color: #333;
+    line-height: 1.8em;
+}
+section {
+    h2  {
+        font: 120% $font-primary;
+    }
+    ul li {
+        font: 100% $font-secondary;
+    }
+}

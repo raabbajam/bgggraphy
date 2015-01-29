@@ -27,18 +27,18 @@ gulp.task('script', function () {
         // .pipe(uglify())
         .pipe(gulp.dest(paths.dists + '/js'));
 });
-gulp.task('style', function () {
-    return sass(paths.assets + '/scss/base.scss')
-        .on('error', function (err) {
-            console.error('Error', err.message);
-        })
-        .pipe(gulp.dest(paths.dists + '/css'));
+gulp.task('style', function() {
+    return sass(paths.assets + '/scss/index.scss', {trace: true})
+    .on('error', function (err) {
+      console.error('Error!', err.message);
+   })
+    .pipe(gulp.dest(paths.dists + '/css'));
 });
 
 
 gulp.task('watch', function(){
     gulp.watch('assets/js/**/*.js', ['script']);
-    gulp.watch('assets/sass/**/*.scss', ['style']);
+    gulp.watch('assets/scss/**/*.scss', ['style']);
 });
 gulp.task('default', [
     'script',

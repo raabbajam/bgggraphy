@@ -1,0 +1,27 @@
+{
+  "name": "biography",
+  "version": "0.0.0",
+  "authors": [
+    "Muhammad Abdul Jabbaar <raabbajam@gmail.com>"
+  ],
+  "description": "Biography",
+  "main": "index.html",
+  "keywords": [
+    "biography"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "typed.js": "*",
+    "progressbar.js": "~0.7.4",
+    "snap.svg": "~0.3.0",
+    "PreloadJS": "~0.6.0",
+    "countUp.js": "inorganik/countUp.js#~1.3.2"
+  }
+}

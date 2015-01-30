@@ -1,7 +1,10 @@
 //= include '../../bower_components/jquery/dist/jquery.min.js'
 //= include '../../bower_components/typed.js/js/typed.js'
+//= include '../../bower_components/gsap/src/minified/TweenLite.min.js'
+//= include '../../bower_components/gsap/src/minified/easing/EasePack.min.js'
+//= include '../../bower_components/rAF/index.js'
+
 $(document).on("secondOnload", function () {
-    console.log('handled');
     $("#typed").typed({
         strings: ["Hey Guys! This is <em>raabbajam</em>.<br>And you are reading my <em>bgggraphy</em>.<br>Enjoy!"],
         typeSpeed: 34,
@@ -11,4 +14,5 @@ $(document).on("secondOnload", function () {
         // defaults to false for infinite loop
         loopCount: 3,
     });
+    //= include 'header.js'    
 });

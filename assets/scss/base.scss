@@ -1,15 +1,16 @@
-$font-primary: "Helvetica Neue",texgyreherosregular,Helvetica,Arial,sans-serif;
-$font-secondary: 'Playfair Display', Georgia, serif;
 body {
     font: 150% $font-primary;
-    color: #333;
+    color: $color1;
+    background: $bgcolor1;
     line-height: 1.8em;
 }
 section {
+    padding: 17px 20px;
     h2  {
         font: 120% $font-primary;
     }
     ul li {
+        color: $color2;
         font: 100% $font-secondary;
     }
 }

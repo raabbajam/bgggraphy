@@ -1,0 +1,109 @@
+#wrapper__image1 {
+    border-radius: 100%;
+    width: 100px;
+    height: 130px;
+    box-shadow: 1px 1px 6px 3.34px rgba(255, 255, 255, 0.34);
+    img {
+        width: 280px;
+        position: absolute;
+        top: -10px;
+        left: -90px;
+    }
+}
+#profil {
+    min-height: 700px;
+    #wrapper__man {
+        position: absolute;
+        width: 250px;
+        margin: 45px 0 0 -125px;
+        left: 50%;
+    }
+    ul {
+        width: 400px;
+        margin: 0 auto;
+        z-index: 2;
+        position: relative;
+        li {
+            min-height: 103px;
+            margin-top: 7px;
+            div, svg, p {
+                transition-duration: 0.33s;
+            }
+            div {
+                border-radius: 100%;
+                width: 130px;
+                height: 130px;
+                background: $bgcolor2;
+                position: absolute;
+                box-shadow: 1px 3px 1px 3px rgba($bgcolor2, 0.67);
+                &:after {
+                    z-index: -1;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    border-top: 87px solid transparent;
+                    border-bottom: 13px solid transparent;
+                }
+                p {
+                    transform: scale(0.33) translate(-100%, -120%);
+                    opacity: 0;
+                    transition-delay: 0;
+                    text-align: center;
+                    position: absolute;
+                    width: 100%;
+                    top: 50%;
+                    left: 50%;
+                    overflow: hidden;
+                }
+                svg {
+                    transition-delay: 0.33s;
+                }
+            }
+            &.no-active{
+                path:first-child {
+                    fill: $bgcolor2;
+                }
+            }
+            &:nth-child(odd) {
+                div {
+                    transform-origin: -35px 88px;
+                    right: 0;
+                    &:after {
+                        right: 50%;
+                        border-right: 100px solid $bgcolor2;
+                    }
+                }
+                p {
+                }
+            }
+            &:nth-child(even){
+                div {
+                    transform-origin: 165px 88px;
+                    &:after {
+                        left: 50%;
+                        border-left: 100px solid $bgcolor2;
+                    }
+                }
+                p {
+                }
+            }
+            &:hover, &.active {
+                div {
+                    transform: scale(2);
+                    p {
+                        transform: scale(0.5) translate(-100%, -120%);
+                        transition-delay: 0.34s;
+                        opacity: 1;
+                    }
+                }
+                svg {
+                     transform: scale(0.5) translateY(50px);
+                }
+            }
+        }
+    }
+    svg {
+        display: block;
+        margin: 15px auto,
+    }
+}

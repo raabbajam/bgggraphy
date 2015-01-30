@@ -6,11 +6,58 @@
     <link rel="stylesheet" href="dists/fonts/texgyreheros_regular_macroman/stylesheet.css" media="screen" title="no title" charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic' rel='stylesheet' type='text/css'>
     <style media="screen">
-        body { font-family: texgyreherosregular, Helvetica, sans-serif; font-size: 15px; background-color: #DDD; color: #777; } header h1 { font-size: 1.89em; } section { min-height: 500px; } h1, h2 { min-height: 100px; margin: 0px auto; text-align: center; line-height: 100px; } ul { margin: 0px 25%; padding: 0px; min-width: 50%; }
-        ul li { list-style: none; margin-left: 0; }
-        #loader { opacity:    0.85; background: #000; width:      100%; height:     100%; z-index:    10; top:        0; left:       0; position:   fixed; transition: all 0.2s ease;}
-        #loader > svg { display: block; width: 200px; margin: 50px auto; }
-        #loader p { position: absolute; top: 80px; color: #aaa; width: 100%; font-family: Courier; font-size: 3em; text-align: center; }
+        body {
+            font-family: texgyreherosregular, Helvetica, sans-serif;
+            font-size: 15px;
+            background-color: #DDD;
+            color: #777;
+        }
+        header h1 {
+            font-size: 1.89em;
+        }
+        section {
+            min-height: 500px;
+        }
+        h1,
+        h2 {
+            min-height: 100px;
+            margin: 0px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+        ul {
+            margin: 0px 25%;
+            padding: 0px;
+        }
+        ul li {
+            list-style: none;
+            margin-left: 0;
+        }
+        #loader {
+            opacity: 0.85;
+            background: #000;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            position: fixed;
+            transition: all 0.2s ease;
+        }
+        #loader > svg {
+            display: block;
+            width: 200px;
+            margin: 50px auto;
+        }
+        #loader p {
+            position: absolute;
+            top: 80px;
+            color: #aaa;
+            width: 100%;
+            font-family: Courier;
+            font-size: 3em;
+            text-align: center;
+        }
     </style>
     <script src="dists/js/preload.js" charset="utf-8"></script>
 
@@ -20,79 +67,174 @@
     <div id="loader">
         <p id="loader-text">0</p>
     </div>
-    <header>
-        <div id="window">
-         	<div id="toolbar">
-        		<div class="top">
-        			<div id="lights">
-        				<div class="light red">
-        					<div class="glyph">×</div>
-        					<div class="shine"></div>
-        					<div class="glow"></div>
-        				</div>
-        				<div class="light yellow">
-        					<div class="glyph">-</div>
-        					<div class="shine"></div>
-        					<div class="glow"></div>
-        				</div>
-        				<div class="light green">
-        					<div class="glyph">+</div>
-        					<div class="shine"></div>
-        					<div class="glow"></div>
-        				</div>
-        			</div>
-        			<div id="title">
-        				<div class="folder">
-        					<div class="tab"></div>
-        					<div class="body"></div>
-        				</div>
-        				bgggraphy
-        			</div>
-        			<div id="bubble">
-        				<div class="shine"></div>
-        				<div class="glow"></div>
-        			</div>
-        		</div>
-        	</div>
-        	<div id="body">
-        		<p> Last login: Thu May 24 12:18:16 on ttys006 <br />raabbajam-pc:raabbajam$  </p>
-        		<p>
-                    <span id="typed" style="white-space:pre;"></span>
-        		</p>
-                <!-- <div class="cursor"></div> -->
-        	</div>
+    <header class="terminal animated-header">
+        <!-- animated header -->
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <!-- terminal -->
+            <div id="window">
+                <div id="toolbar">
+                    <div class="top">
+                        <div id="lights">
+                            <div class="light red">
+                                <div class="glyph">&times;</div>
+                                <div class="shine"></div>
+                                <div class="glow"></div>
+                            </div>
+                            <div class="light yellow">
+                                <div class="glyph">-</div>
+                                <div class="shine"></div>
+                                <div class="glow"></div>
+                            </div>
+                            <div class="light green">
+                                <div class="glyph">+</div>
+                                <div class="shine"></div>
+                                <div class="glow"></div>
+                            </div>
+                        </div>
+                        <div id="title">
+                            <div class="folder">
+                                <div class="tab"></div>
+                                <div class="body"></div>
+                            </div>
+                            bgggraphy
+                        </div>
+                        <div id="bubble">
+                            <div class="shine"></div>
+                            <div class="glow"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="body">
+                    <p> Last login: Thu May 24 12:18:16 on ttys006
+                        <br />raabbajam-mac:raabbajam$ </p>
+                    <p>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </p>
+                    <!-- <div class="cursor"></div> -->
+                </div>
+            </div>
         </div>
     </header>
     <!-- profil -->
     <section id="profil">
         <h2>Profile</h2>
+        <div id="wrapper__man"></div>
         <ul>
-            <li>Muhammad Abdul Jabbaar</li>
-            <li id="image1"></li>
-            <li>Web Developer in Pondok Programmer</li>
-            <li>From Cirebon, West Java</li>
-            <li>Kind, loving and caring -- most of the time</li>
-            <li>Hot-tempered, silent, and indifferent -- when stressed by testless code beast</li>
+            <li class="no-active">
+                <div id="wrapper__profile1">
+                    <p>Muhammad Abdul Jabbaar</p>
+
+                </div>
+            </li>
+            <li class="no-active">
+                <div id="wrapper__profile2">
+                    <p id="wrapper__image1"></p>
+
+                </div>
+            </li>
+            <li class="no-active">
+                <div id="wrapper__profile3">
+                    <p>Web Developer in Pondok Programmer</p>
+
+                </div>
+            </li>
+            <li class="no-active">
+                <div id="wrapper__profile4">
+                    <p>From Cirebon, West Java</p>
+
+                </div>
+            </li>
+            <li class="no-active">
+                <div id="wrapper__profile5">
+                    <p>Kind, loving and caring -- most of the time</p>
+
+                </div>
+            </li>
+            <li class="no-active">
+                <div id="wrapper__profile6">
+                    <p>Hot-tempered, silent, and indifferent -- when stressed by testless code beast</p>
+
+                </div>
+            </li>
         </ul>
     </section>
     <!-- timeline -->
     <section id="timeline">
         <h2>Timeline</h2>
-        <ul>
+        <ul class="cbp_tmtimeline">
             <li>
-                <span>24th of August 1991</span> Born on Bandung.</li>
+                <time class="cbp_tmtime" datetime="1991-08-24 03:30">
+                    <span>1991</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>Born in Bandung</h2>
+                    <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil
+                        cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.
+                        Plantain salad beetroot bunya nuts black-eyed pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra leone bologi.</p>
+                </div>
+            </li>
             <li>
-                <span>1995 - 2002</span> Enrolled grade school Bandung (1st - 5th grade), Pangkalpinang (6ht grade)</li>
+                <time class="cbp_tmtime" datetime="1995-01-01 00:00">
+                    <span>1995 - 2002</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>Grade School</h2>
+                    <p>Enrolled grade school Bandung (1st - 5th grade), Pangkalpinang (6ht grade).</p>
+                </div>
+            </li>
             <li>
-                <span>2002 - 2005</span> Enrolled middle school Kuningan</li>
+                <time class="cbp_tmtime" datetime="2002-01-01 00:00">
+                    <span>2002 - 2005</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>Middle School</h2>
+                    <p>Enrolled middle school in Kuningan.</p>
+                </div>
+            </li>
             <li>
-                <span>2005 - 2008</span> Enrolled high school Cirebon</li>
+                <time class="cbp_tmtime" datetime="2005-01-01 00:00">
+                    <span>2005 - 2008</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>High School</h2>
+                    <p>Enrolled high school in Cirebon.</p>
+                </div>
+            </li>
             <li>
-                <span>2008 - 2013</span> That phase where you life off your parents' money</li>
+                <time class="cbp_tmtime" datetime="2008-01-01 00:00">
+                    <span>2008 - 2013</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>The Lost Age</h2>
+                    <p>That phase where you life off your parents' money.</p>
+                </div>
+            </li>
             <li>
-                <span>1st of November 2013 - present</span> Joined Jasaprogrammer</li>
+                <time class="cbp_tmtime" datetime="2013-10-01 00:00">
+                    <span>2013 - Present</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>Joined Jasaprogrammer</h2>
+                    <p>Joined Jasaprogrammer in Yogyakarta.</p>
+                </div>
+            </li>
             <li>
-                <span>2014 - present</span> Joined Pondok Programmer</li>
+                <time class="cbp_tmtime" datetime="2014-01-01 00:00">
+                    <span>2014 - Present</span>
+                </time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>Joined Pondok Programmer</h2>
+                    <p>Joined Pondok Programmer in Yogyakarta.</p>
+                </div>
+            </li>
         </ul>
     </section>
     <!-- family -->
@@ -147,7 +289,8 @@
     <section id="experience">
         <h2>Experience</h2>
         <ul>
-            <li>Junior programmer on <a href="http://folbek.me" target="_blank">folbek.me</a></li>
+            <li>Junior programmer on <a href="http://folbek.me" target="_blank">folbek.me</a>
+            </li>
             <li>Junior programmer on Pondok Programmer</li>
         </ul>
     </section>
@@ -155,10 +298,14 @@
     <section id="contact">
         <h2>Contact Information</h2>
         <ul>
-            <li><a href="http://fb.com/raabbajam">facebook</a></li>
-            <li><a href="http://twitter.com/speakandcare">twitter</a></li>
-            <li><a href="mailto:raabbajam@gmail.com">email</a></li>
-            <li><a href="http://github.com/raabbajam">github</a></li>
+            <li><a href="http://fb.com/raabbajam">facebook</a>
+            </li>
+            <li><a href="http://twitter.com/speakandcare">twitter</a>
+            </li>
+            <li><a href="mailto:raabbajam@gmail.com">email</a>
+            </li>
+            <li><a href="http://github.com/raabbajam">github</a>
+            </li>
         </ul>
     </section>
     <!-- thanks -->

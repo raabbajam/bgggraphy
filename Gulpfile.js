@@ -2,6 +2,8 @@ var gulp = require('gulp');
 // var uglify = require('gulp-uglify');
 var sass = require('gulp-ruby-sass');
 var include = require('gulp-include');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 // var prefixer = require('gulp-autoprefixer');
 // var minifycss = require('gulp-minify-css');
 // var minifyhtml = require('gulp-minify-html');
@@ -11,7 +13,7 @@ var include = require('gulp-include');
 // var cache = require('gulp-rename');
 // var clean = require('gulp-clean');
 //
-// var notify = require('gulp-notify');
+var notify = require('gulp-notify');
 
 var paths = {
     assets: 'assets',
@@ -25,16 +27,28 @@ gulp.task('script', function () {
     gulp.src(paths.assets + '/js/*.js')
         .pipe(include())
         // .pipe(uglify())
-        .pipe(gulp.dest(paths.dists + '/js'));
+        .pipe(gulp.dest(paths.dists + '/js'))
+        .pipe(notify({ message: '"Script" completed!'}));
 });
 gulp.task('style', function() {
     return sass(paths.assets + '/scss/index.scss', {trace: true})
     .on('error', function (err) {
       console.error('Error!', err.message);
    })
-    .pipe(gulp.dest(paths.dists + '/css'));
+    .pipe(gulp.dest(paths.dists + '/css'))
+    .pipe(notify({ message: '"Style" completed!'}));
 });
 
+gulp.task('image', function () {
+    return gulp.src('assets/images/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('dists/images'))
+        .pipe(notify({ message: '"Image" completed!'}));
+});
 
 gulp.task('watch', function(){
     gulp.watch('assets/js/**/*.js', ['script']);

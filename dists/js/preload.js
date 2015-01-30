@@ -27,14 +27,21 @@ function countUp(a,b,c,d,e,f){for(var g=0,h=["webkit","moz","ms","o"],i=0;i<h.le
             var files = [
                 "dists/css/index.css",
                 "dists/js/index.js",
-                {id: 'image1', src: "dists/images/image1.jpg"}
+                {id: 'man', src: "dists/images/man.svg"},
+                {id: 'image1', src: "dists/images/image1.jpg"},
+                {id: 'profile1', src: "dists/images/profil1.svg"},
+                {id: 'profile2', src: "dists/images/profil2.svg"},
+                {id: 'profile3', src: "dists/images/profil3.svg"},
+                {id: 'profile4', src: "dists/images/profil4.svg"},
+                {id: 'profile5', src: "dists/images/profil5.svg"},
+                {id: 'profile6', src: "dists/images/profil6.svg"},
             ];
             var percentage = 0;
             var oldPercentage = 0;
             var loaded = 0;
             var loadFileTotal = files.length;
             var event; // The custom event that will be created
-            var _event = 'secondOnload'
+            var _event = 'secondOnload';
             if (document.createEvent) {
                 event = document.createEvent("HTMLEvents");
                 event.initEvent(_event, true, true);
@@ -65,9 +72,6 @@ function countUp(a,b,c,d,e,f){for(var g=0,h=["webkit","moz","ms","o"],i=0;i<h.le
             });
             // Expose the bar to global so it is easy to test from console
             window.bar = bar;
-            // files.forEach(function (file) {
-            //     preload.loadFile(file);
-            // });
             preload.loadManifest(files);
             var counter;
             function handleFileComplete(fileEvent) {
@@ -82,17 +86,16 @@ function countUp(a,b,c,d,e,f){for(var g=0,h=["webkit","moz","ms","o"],i=0;i<h.le
                 bar.animate(loaded / loadFileTotal, function () {
                     if (percentage === 100) {
                         loader.style.opacity = 0;
+                        loader.style.zIndex = -1;
                         if (document.createEvent) {
                             document.dispatchEvent(event);
                         } else {
                             document.fireEvent("on" + event.eventType, event);
                         }
-                        console.log('emitted');
                     }
                 });
                 if (!!fileEvent.item && !!fileEvent.item.id) {
-                    console.log('fileEvent.item.id: "%s"', fileEvent.item.id);
-                    var wrapper = document.getElementById(fileEvent.item.id)
+                    var wrapper = document.getElementById("wrapper__" + fileEvent.item.id);
                     if (!!wrapper)
                         wrapper.appendChild(fileEvent.result);
                 } else {

@@ -3,8 +3,6 @@
 //= include '../../bower_components/gsap/src/minified/TweenLite.min.js'
 //= include '../../bower_components/gsap/src/minified/easing/EasePack.min.js'
 //= include '../../bower_components/rAF/index.js'
-//= include '../../bower_components/rAF/index.js'
-//= include '../../bower_components/snap.svg/dist/snap.svg-min.js'
 
 $(document).on("secondOnload", function () {
     $("#typed").typed({

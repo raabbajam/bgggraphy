@@ -31,7 +31,7 @@ gulp.task('script', function () {
         .pipe(notify({ message: '"Script" completed!'}));
 });
 gulp.task('style', function() {
-    return sass(paths.assets + '/scss/index.scss', {trace: true})
+    return sass(paths.assets + '/scss/', {trace: true})
     .on('error', function (err) {
       console.error('Error!', err.message);
    })

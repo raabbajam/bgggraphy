@@ -1,7 +1,8 @@
-//= include '../../bower_components/progressbar.js/dist/progressbar.min.js'
 //= include '../../bower_components/PreloadJS/lib/preloadjs-0.6.0.min.js'
+//= include '../../bower_components/snap.svg/dist/snap.svg-min.js'
 //= include '../../bower_components/countUp.js/countUp.min.js'
-
+//= include '../../bower_components/PageLoadingEffects/js/classie.js'
+//= include '../../bower_components/PageLoadingEffects/js/svgLoader.js'
     (function() {
         function onLoad() {
             var files = [
@@ -27,6 +28,9 @@
             var oldPercentage = 0;
             var loaded = 0;
             var loadFileTotal = files.length;
+    		var loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 300, easingIn : mina.easeinout } );
+            window.loader = loader;
+        	loader.show();
             var event; // The custom event that will be created
             var _event = 'secondOnload';
             if (document.createEvent) {
@@ -38,27 +42,12 @@
             }
             event.eventName = _event;
             var preload = new createjs.LoadQueue();
-            var text = document.querySelector('#loader-text');
-            var loader = document.querySelector('#loader');
             var textOptions = {
                 useEasing: true,
                 useGrouping: true,
+                suffix: '%',
             };
             preload.addEventListener("fileload", handleFileComplete);
-            var bar = new ProgressBar.Circle('#loader', {
-                duration: 3333,
-                strokeWidth: 33.3,
-                fill: "rgba(0, 0, 0, 0.2)",
-                text: text,
-                from: { color: '#900' },
-                to: { color: '#090' },
-                step: function(state, bar) {
-                    bar.path.setAttribute('stroke', state.color);
-                    bar.path.setAttribute('fill', state.color);
-                },
-            });
-            // Expose the bar to global so it is easy to test from console
-            window.bar = bar;
             preload.loadManifest(files);
             var counter;
             function handleFileComplete(fileEvent) {
@@ -70,17 +59,18 @@
                 counter = new countUp("loader-text", oldPercentage, percentage, 0, 3.333, textOptions);
                 if (!!counter && !!counter.start)
                     counter.start();
-                bar.animate(loaded / loadFileTotal, function () {
-                    if (percentage === 100) {
-                        loader.style.opacity = 0;
-                        loader.style.zIndex = -1;
-                        if (document.createEvent) {
-                            document.dispatchEvent(event);
-                        } else {
-                            document.fireEvent("on" + event.eventType, event);
-                        }
+                if (percentage === 100) {
+                    setInterval(function () {
+                        loader.hide();
+                        document.getElementById('loader-text').style.opacity = 0;
+                        document.body.className = "loaded";
+                    }, 500);
+                    if (document.createEvent) {
+                        document.dispatchEvent(event);
+                    } else {
+                        document.fireEvent("on" + event.eventType, event);
                     }
-                });
+                }
                 if (!!fileEvent.item && !!fileEvent.item.id) {
                     var wrapper = document.getElementById("wrapper__" + fileEvent.item.id);
                     if (!!wrapper)

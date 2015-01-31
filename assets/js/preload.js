@@ -15,6 +15,13 @@
                 {id: 'profile4', src: "dists/images/profil4.svg"},
                 {id: 'profile5', src: "dists/images/profil5.svg"},
                 {id: 'profile6', src: "dists/images/profil6.svg"},
+                // {id: 'timeline1', src: "dists/images/timeline1.svg"},
+                {id: 'timeline2', src: "dists/images/timeline2.svg"},
+                {id: 'timeline3', src: "dists/images/timeline3.svg"},
+                {id: 'timeline4', src: "dists/images/timeline4.svg"},
+                // {id: 'timeline5', src: "dists/images/timeline5.svg"},
+                // {id: 'timeline6', src: "dists/images/timeline6.svg"},
+                // {id: 'timeline7', src: "dists/images/timeline7.svg"},
             ];
             var percentage = 0;
             var oldPercentage = 0;

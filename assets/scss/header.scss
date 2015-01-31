@@ -3,13 +3,14 @@
 	position: relative;
 	width: 100%;
 	background: #333;
-	overflow: hidden;
+	overflow: visible;
 	background-size: cover;
 	background-position: center center;
 	z-index: 1;
 	background-image: url('dists/images/header.png');
 }
 .main-title {
+	text-shadow: 0 0 6.67px;
 	position: absolute;
 	margin: 0;
 	padding: 0;
@@ -20,10 +21,11 @@
 	-webkit-transform: translate3d(-50%,-50%,0);
 	transform: translate3d(-50%,-50%,0);
 	text-transform: uppercase;
-	font-size: 4.2em;
+	font-size: 3.3em;
 	letter-spacing: 0.1em;
     .thin {
     	font-weight: 200;
+		opacity: 0.67;
     }
 }
 

@@ -33,16 +33,20 @@
                 border-radius: 100%;
                 width: 130px;
                 height: 130px;
-                background: $bgcolor2;
+                background: white;
                 position: absolute;
                 box-shadow: 1px 3px 1px 3px rgba($bgcolor2, 0.67);
                 &:after {
-                    z-index: -1;
+                    border: none;
+                    background: url('dists/images/tooltip1.svg') no-repeat center center;
                     content: '';
                     position: absolute;
-                    top: 0;
-                    border-top: 87px solid transparent;
-                    border-bottom: 13px solid transparent;
+                    top: 100%;
+                    left: 50%;
+                    margin: -7px 0 0 -15px;
+                    width: 30px;
+                    height: 20px;
+                    background-size: 100%;
                 }
                 p {
                     transform: scale(0.33) translate(-100%, -120%);
@@ -68,10 +72,6 @@
                 div {
                     transform-origin: -35px 88px;
                     right: 0;
-                    &:after {
-                        right: 50%;
-                        border-right: 100px solid $bgcolor2;
-                    }
                 }
                 p {
                 }
@@ -79,17 +79,13 @@
             &:nth-child(even){
                 div {
                     transform-origin: 165px 88px;
-                    &:after {
-                        left: 50%;
-                        border-left: 100px solid $bgcolor2;
-                    }
                 }
                 p {
                 }
             }
             &:hover, &.active {
                 div {
-                    transform: scale(2);
+                    transform: scale(1.5);
                     p {
                         transform: scale(0.5) translate(-100%, -120%);
                         transition-delay: 0.34s;

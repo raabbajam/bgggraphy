@@ -22,7 +22,7 @@
     	bottom: 0;
     	width: 10px;
     	background: $bgcolor1;
-    	left: 20%;
+    	left: 60%;
     	margin-left: -10px;
     }
     > li {
@@ -31,7 +31,7 @@
         /* The date/time */
         .cbp_tmtime {
         	display: block;
-        	width: 25%;
+        	width: 20%;
         	padding-right: 100px;
         	position: absolute;
             span {
@@ -44,21 +44,17 @@
                 }
             }
         }
-        &:nth-child(odd) {
+        &:nth-child(even) {
             .cbp_tmtime span:last-child {
             	color: $color1;
-            }
-            .cbp_tmlabel {
-            	background: $bgcolor1;
-                &:after {
-                	border-right-color: $bgcolor1;
-                }
             }
         }
 
         /* Right content */
         .cbp_tmlabel {
-        	margin: 0 0 15px 25%;
+			width: 40%;
+        	margin: 0 0 15px 20%;
+            background: $bgcolor1;
         	background: $bgcolor2;
         	color: #fff;
         	padding: 2em;
@@ -74,23 +70,36 @@
             }
             /* The triangle */
             &:after {
-            	right: 100%;
-            	border: solid transparent;
+            	border: solid 10px transparent;
+            	border-left-color: $bgcolor2;
             	content: " ";
             	height: 0;
             	width: 0;
             	position: absolute;
             	pointer-events: none;
-            	border-right-color: $bgcolor2;
-            	border-width: 10px;
-            	top: 10px;
+            	top: 50%;
             }
         }
+		&:nth-child(odd) {
+			.cbp_tmlabel {
+				&:after {
+					left: 100%
+				}
+			}
+		}
+		&:nth-child(even) {
+			.cbp_tmlabel {
+				margin: 0 0 15px 60%;
+				&:after {
+            		border: solid 10px transparent;
+					border-right-color: $bgcolor2;
+					right: 100%
+				}
+			}
+		}
 
         /* The icons */
         .cbp_tmicon {
-        	width: 40px;
-        	height: 40px;
         	font-family: 'ecoico';
         	speak: none;
         	font-style: normal;
@@ -98,35 +107,30 @@
         	font-variant: normal;
         	text-transform: none;
         	font-size: 1.4em;
-        	line-height: 40px;
         	-webkit-font-smoothing: antialiased;
         	position: absolute;
         	color: #fff;
         	background: $bgcolor2;
         	border-radius: 50%;
-        	box-shadow: 0 0 0 8px #afdcf8;
         	text-align: center;
-        	left: 20%;
-        	top: 0;
-        	margin: 0 0 0 -25px;
+        	left: 70%;
+        	top: 50%;
+        	margin: -69px 0 0 -69px;
         }
+		&:nth-child(even) {
+        	.cbp_tmicon {
+        		left: 50%;
+			}
+		}
     }
-}
-
-.cbp_tmicon-phone:before {
-	content: "\e000";
-}
-
-.cbp_tmicon-screen:before {
-	content: "\e001";
-}
-
-.cbp_tmicon-mail:before {
-	content: "\e002";
-}
-
-.cbp_tmicon-earth:before {
-	content: "\e003";
+	svg {
+		overflow: visible;
+	}
+	#wrapper__timeline2,  #wrapper__timeline4  {
+		svg {
+			transform: scaleX(-1);
+		}
+	}
 }
 
 /* Example Media Queries */
@@ -175,4 +179,33 @@
     		margin: -55px 5px 0 0px;
     	}
     }
+}
+@include keyframes(move-to-left) {
+	0%  { transform: translateX(0); }
+	50% { transform: translateX(667px);}
+	51% { transform: translateX(667px) scaleX(-1);}
+	99% { transform: translateX(0px) scaleX(-1);}
+}
+@include keyframes(move-to-right) {
+	0%  { transform: translateX(0); }
+	50% { transform: translateX(667px);}
+	51% { transform: translateX(667px) scaleX(-1);}
+	99% { transform: translateX(0px) scaleX(-1);}
+}
+#timeline {
+	li:hover, .active {
+		#wrapper__timeline2, #wrapper__timeline4 {
+			g {
+				transform-origin: 50%;
+				@include animation('move-to-left 10s 1');
+			}
+		}
+		#wrapper__timeline3 {
+			g {
+				transform-origin: 50%;
+				@include animation('move-to-right 10s 1');
+			}
+		}
+
+	}
 }

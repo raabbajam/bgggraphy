@@ -30,4 +30,26 @@ section {
         color: $color2;
         font: 100% $font-secondary;
     }
+
+}
+.slabtexted .slabtext {
+    display: inline-block;
+    white-space: nowrap;
+}
+.slabtextinactive .slabtext {
+    display: inline;
+    white-space: normal;
+    font-size: 1em !important;
+    letter-spacing: inherit !important;
+    word-spacing: inherit !important;
+    *letter-spacing: 0 !important;
+    *word-spacing: 0 !important;
+}
+.slabtextdone .slabtext {
+    display: block;
+    line-height: 1.2;
+}
+a {
+    color: $linkcolor;
+    text-decoration: none;
 }

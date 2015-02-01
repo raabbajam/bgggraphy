@@ -6,23 +6,32 @@
 }
 /* Made with http://icomoon.io/ */
 #timeline {
-    li:hover,
+    background-image: url("dists/images/timeline.png");
+    background-size: cover;
     .active {
         #wrapper__timeline2,
-        #wrapper__timeline4 {
+        #wrapper__timeline4,
+        #wrapper__timeline6 {
             g {
                 transform-origin: 50%;
-                @include animation('move-to-left 10s 1');
+                @include animation('move-to-left 6s 1');
             }
         }
-        #wrapper__timeline3 {
-            g {
+        #wrapper__timeline1,
+        #wrapper__timeline3,
+        #wrapper__timeline5 {
+            g, #timeline__money {
                 transform-origin: 50%;
-                @include animation('move-to-right 10s 1');
+                @include animation('move-to-right 6s 1');
+            }
+        }
+        #wrapper__timeline7 {
+            #timeline__smoke {
+                @include animation('move-up 1s 6');
             }
         }
 		.cbp_tmtime span {
-			transform: scale(1.67);
+			transform: scale(2.1);
 		}
     }
     .cbp_tmtimeline {
@@ -36,13 +45,13 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            border: 10px solid $bgcolor2;
+            border: 9px dotted $bgcolor2;
             left: 60%;
-            margin-left: -10px;
+            margin: 3em 0 0 -0.67em;
         }
         > li {
             position: relative;
-
+            margin: 3em 0 6em;
             /* The date/time */
             .cbp_tmtime {
                 display: block;
@@ -54,6 +63,8 @@
                     font-size: 1.33em;
                     transition: all 0.33s;
                     transform-origin: 0;
+                    z-index: 1;
+                    position: relative;
                 }
 
             }
@@ -138,7 +149,8 @@
             overflow: visible;
         }
         #wrapper__timeline2,
-        #wrapper__timeline4 {
+        #wrapper__timeline4,
+        #wrapper__timeline6 {
             svg {
                 transform: scaleX(-1);
             }
@@ -221,6 +233,17 @@
         }
         99% {
             transform: translateX(0px) scaleX(-1);
+        }
+    }
+    @include keyframes(move-up) {
+        0% {
+            transform: translate(0);
+        }
+        99% {
+            transform: translate(0, -100px);
+        }
+        100% {
+            transform: translate(0);
         }
     }
 }

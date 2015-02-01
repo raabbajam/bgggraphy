@@ -90,7 +90,7 @@
 		var brackets = document.querySelector('.brackets');
 		var animationEvent = whichAnimationEvent();
 		var loop = 0;
-		var maxLoop = 2;
+		var maxLoop = 1;
 		var stopAnimation = false;
 		if (!!animationEvent)
         brackets.addEventListener(animationEvent, handleAnimation);

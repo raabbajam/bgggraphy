@@ -1,12 +1,12 @@
 var gulp = require('gulp');
-// var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify');
 var sass = require('gulp-ruby-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var include = require('gulp-include');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
-// var prefixer = require('gulp-autoprefixer');
-// var minifycss = require('gulp-minify-css');
+var autoprefixer = require('gulp-autoprefixer');
+var minifycss = require('gulp-minify-css');
 // var minifyhtml = require('gulp-minify-html');
 //
 // var concat = require('gulp-concat');
@@ -29,7 +29,7 @@ var paths = {
 gulp.task('script', function() {
 	gulp.src(paths.assets + '/js/*.js')
 		.pipe(include())
-		// .pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest(paths.dists + '/js'))
 		.pipe(notify({
 			message: '"Script" completed!'
@@ -40,9 +40,17 @@ gulp.task('style', function() {
 			trace: true,
 			sourcemap: true
 		})
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions'],
+			cascade: false
+		}))
 		.on('error', function(err) {
-			console.error('Error!', err.message);
+			notify({
+				message: err.message
+			});
 		})
+		.pipe(sourcemaps.init())
+		.pipe(minifycss())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.dists + '/css'))
 		.pipe(notify({
@@ -58,13 +66,13 @@ gulp.task('image', function() {
 				cleanupIDs: {
 					remove: false
 				},
-                convertShapeToPath: {
-                    active: false
-                }
+				convertShapeToPath: {
+					active: false
+				}
 			}],
 			use: [pngquant()]
 		}))
-        .pipe(chmod(755))
+		.pipe(chmod(755))
 		.pipe(gulp.dest('dists/images'))
 		.pipe(notify({
 			message: '"Image" completed!'

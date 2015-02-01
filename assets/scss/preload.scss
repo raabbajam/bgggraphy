@@ -1,3 +1,6 @@
+.wf-loading {
+    visibility: hidden;
+}
 #demo-canvas {
     max-width: 100%;
     min-height: 500px;
@@ -57,9 +60,6 @@
     top: 0;
     left: 0;
     visibility: hidden;
-    .starting & {
-        visibility: visible;
-    }
 }
 .pageload-overlay.show {
     visibility: visible;

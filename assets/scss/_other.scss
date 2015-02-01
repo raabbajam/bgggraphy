@@ -1,0 +1,27 @@
+#hobby,
+#family,
+#goal,
+#experience,
+#skill,
+#contact {
+    & > ul {
+        width: 90%;
+        -webkit-column-count: 3;
+        -webkit-column-gap: 6em;
+        margin: 0 auto;
+        li {
+            &:nth-child(odd) {
+                color: $color1;
+            }
+            &:nth-child(even) {
+                color: $color3;
+            }
+        }
+    }
+
+}
+#thanks {
+
+    background-image: url("dists/images/thanks.png");
+    background-size: cover;
+}

@@ -3,12 +3,8 @@
 
 <head>
     <title>bgggraphy &middot; raabbajam</title>
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic' rel='stylesheet' type='text/css'>
     <style media="screen">
         body {
-            font-family: texgyreherosregular, Helvetica, sans-serif;
             font-size: 15px;
             background-color: #DDD;
             color: #777;
@@ -21,10 +17,7 @@
         }
         h1,
         h2 {
-            min-height: 100px;
             margin: 0px auto;
-            text-align: center;
-            line-height: 100px;
         }
         ul {
             margin: 0px 25%;
@@ -34,7 +27,31 @@
             list-style: none;
             margin-left: 0;
         }
+        .la-anim-11 {
+            color: black;
+            position: fixed;
+            right: 20px;
+            z-index: 11;
+            display: inline-block;
+            overflow: hidden;
+            height: 1em;
+            text-align: right;
+            font-weight: 300;
+            font-size: 10em;
+            line-height: 1em;
+            pointer-events: none;
+            opacity: 0;
+            visibility: visible;
+            -webkit-transition: opacity 0.3s;
+            transition: opacity 0.3s;
+        }
+        .la-anim-11.la-animate {
+            opacity: 1;
+        }
     </style>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic' rel='stylesheet' type='text/css'>
 
     <link href='dists/css/preload.css' rel='stylesheet' type='text/css'>
     <script src="dists/js/preload.js" charset="utf-8"></script>
@@ -99,6 +116,14 @@
             </div>
         </div>
     </header>
+    <section id="welcome">
+        <div id="wrapper__logo">
+
+        </div>
+        <p>
+            <span class="strong">bgggraphy</span> is another biography of a web developer.<br/>It contains basic informations and <span class="strong">so on</span>.
+        </p>
+    </section>
     <!-- profil -->
     <section id="profil">
         <h2>Profile</h2>

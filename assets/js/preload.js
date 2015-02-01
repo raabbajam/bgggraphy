@@ -10,25 +10,26 @@
                 "dists/js/index.js",
                 {id: 'man', src: "dists/images/man.svg"},
                 {id: 'image1', src: "dists/images/image1.jpg"},
+                {id: 'logo', src: "dists/images/logo.svg"},
                 {id: 'profile1', src: "dists/images/profil1.svg"},
                 {id: 'profile2', src: "dists/images/profil2.svg"},
                 {id: 'profile3', src: "dists/images/profil3.svg"},
                 {id: 'profile4', src: "dists/images/profil4.svg"},
                 {id: 'profile5', src: "dists/images/profil5.svg"},
                 {id: 'profile6', src: "dists/images/profil6.svg"},
-                // {id: 'timeline1', src: "dists/images/timeline1.svg"},
+                {id: 'timeline1', src: "dists/images/timeline1.svg"},
                 {id: 'timeline2', src: "dists/images/timeline2.svg"},
                 {id: 'timeline3', src: "dists/images/timeline3.svg"},
                 {id: 'timeline4', src: "dists/images/timeline4.svg"},
-                // {id: 'timeline5', src: "dists/images/timeline5.svg"},
-                // {id: 'timeline6', src: "dists/images/timeline6.svg"},
-                // {id: 'timeline7', src: "dists/images/timeline7.svg"},
+                {id: 'timeline5', src: "dists/images/timeline5.svg"},
+                {id: 'timeline6', src: "dists/images/timeline6.svg"},
+                {id: 'timeline7', src: "dists/images/timeline7.svg"},
             ];
             var percentage = 0;
             var oldPercentage = 0;
             var loaded = 0;
             var loadFileTotal = files.length;
-    		var loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 300, easingIn : mina.easeinout } );
+    		var loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 667, easingIn : mina.easeinout } );
             window.loader = loader;
         	loader.show();
             var event; // The custom event that will be created
@@ -47,20 +48,21 @@
                 useGrouping: true,
                 suffix: '%',
             };
-            preload.addEventListener("fileload", handleFileComplete);
+            preload.addEventListener("fileload", handleFile);
+            preload.addEventListener("error", handleFile);
             preload.loadManifest(files);
             var counter;
-            function handleFileComplete(fileEvent) {
+            function handleFile(fileEvent) {
                 loaded++;
                 if (!!counter && !!counter.stop)
                     counter.stop();
                 oldPercentage = percentage;
                 percentage = (loaded / loadFileTotal) * 100;
-                counter = new countUp("loader-text", oldPercentage, percentage, 0, 3.333, textOptions);
+                counter = new countUp("loader-text", oldPercentage, percentage, 0, 0.333, textOptions);
                 if (!!counter && !!counter.start)
                     counter.start();
                 if (percentage === 100) {
-                    setInterval(function () {
+                    setTimeout(function () {
                         loader.hide();
                         document.getElementById('loader-text').style.opacity = 0;
                         document.body.className = "loaded";
@@ -76,7 +78,8 @@
                     if (!!wrapper)
                         wrapper.appendChild(fileEvent.result);
                 } else {
-                    document.body.appendChild(fileEvent.result);
+                    if (!!fileEvent.result)
+                        document.body.appendChild(fileEvent.result);
                 }
             }
         }

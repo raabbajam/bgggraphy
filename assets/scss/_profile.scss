@@ -10,10 +10,17 @@
         left: -90px;
     }
 }
+#wrapper__profilbg img {
+    width: 700px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 0;
+}
 #profil {
     background-image: url("dists/images/profil.png");
     background-size: cover;
-    min-height: 700px;
+    height: 900px;
     #wrapper__man {
         position: absolute;
         width: 250px;

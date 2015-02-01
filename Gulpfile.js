@@ -57,7 +57,10 @@ gulp.task('image', function() {
 			svgoPlugins: [{
 				cleanupIDs: {
 					remove: false
-				}
+				},
+                convertShapeToPath: {
+                    active: false
+                }
 			}],
 			use: [pngquant()]
 		}))
